@@ -1,5 +1,8 @@
 #include <IRremote.h>
+#include <SoftwareSerial.h>
 #include <hexapod_bionic_robot.h>
+
+#define DEBUG 1
 
 IRrecv         g_ir_receiver(PIN_IR);
 decode_results g_ir_results;
