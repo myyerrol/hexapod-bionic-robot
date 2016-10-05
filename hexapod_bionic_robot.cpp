@@ -2,6 +2,9 @@
 
 HexapodBionicRobot::HexapodBionicRobot(void)
 {
+    pinMode(PIN_LED, OUTPUT);
+    pinMode(PIN_TRIG, OUTPUT);
+    pinMode(PIN_ECHO, INPUT);
 }
 
 float HexapodBionicRobot::getDistance(void)
