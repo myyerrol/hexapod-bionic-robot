@@ -1,3 +1,6 @@
 HexapodBionicRobot	KEYWORD1
 
-getDistance	KEYWORD2
+handleInfraredInformation	KEYWORD2
+handleUltrasonicDistance	KEYWORD2
+getInfraredInformation	KEYWORD2
+getUltrasonicDistance	KEYWORD2
