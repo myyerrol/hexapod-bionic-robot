@@ -3,10 +3,10 @@
 
 #include <Arduino.h>
 
-#define TIMEOUT  30000
 #define PIN_LED  13
 #define PIN_TRIG 5
 #define PIN_ECHO 6
+#define TIMEOUT  30000
 
 class HexapodBionicRobot
 {
