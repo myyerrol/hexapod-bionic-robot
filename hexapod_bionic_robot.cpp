@@ -42,7 +42,7 @@ void HexapodBionicRobot::handleUltrasonicDistance(void)
 
 void HexapodBionicRobot::handleInfraredInformation(void)
 {
-    float distance = getUltrasonicDistance();
+    float distance = 0.0;
     uint32_t ir_results = getInfraredInformation();
 
     if (ir_results == false) {
@@ -61,6 +61,7 @@ void HexapodBionicRobot::handleInfraredInformation(void)
         }
 
         if (mode_flag_ == MODE_REMOTE) {
+            digitalWrite(PIN_LED, LOW);
             if (ir_results == 0xFF02FD) {
                 moveRobotBody(DIR_FRONT, 1);
             }
@@ -79,8 +80,13 @@ void HexapodBionicRobot::handleInfraredInformation(void)
 
         }
         else if (mode_flag_ == MODE_AUTO) {
-            while (ir_results_ = getUltrasonicDistance)
-            moveRobotBody(DIR_FRONT, 1);
+            digitalWrite(PIN_LED, HIGH);
+            while (ir_results != 0XFF629D) {
+                ir_results = getInfraredInformation();
+                moveRobotBody(DIR_FRONT, 1);
+                delay(2000);
+            }
+            mode_flag_ = MODE_REMOTE;
         }
     }
 }
