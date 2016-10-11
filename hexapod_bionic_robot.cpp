@@ -10,6 +10,8 @@ HexapodBionicRobot::HexapodBionicRobot(IRrecv *ir_recviver,
     pinMode(PIN_TRIG, OUTPUT);
     pinMode(PIN_ECHO, INPUT);
 
+    mode_flag_ = MODE_REMOTE;
+
     duration_ = 0.0;
     distance_ = 0.0;
 }
@@ -19,11 +21,13 @@ void HexapodBionicRobot::handleUltrasonicDistance(void)
     float distance = getUltrasonicDistance();
 
     if (distance == false) {
-        Serial.println("No data for ultrasonic sensor!!!");
+        return ;
     }
     else if (distance <= 5.0) {
         digitalWrite(PIN_LED, HIGH);
+#if DEBUG
         Serial.println("Warning! Distance is too close!!!");
+#endif
     }
     else {
         digitalWrite(PIN_LED, LOW);
@@ -32,12 +36,13 @@ void HexapodBionicRobot::handleUltrasonicDistance(void)
     Serial.print("Distance: ");
     Serial.print(distance);
     Serial.println("cm");
-    delay(100);
 #endif
+    delay(100);
 }
 
 void HexapodBionicRobot::handleInfraredInformation(void)
 {
+    float distance = getUltrasonicDistance();
     uint32_t ir_results = getInfraredInformation();
 
     if (ir_results == false) {
@@ -48,33 +53,51 @@ void HexapodBionicRobot::handleInfraredInformation(void)
         Serial.print("Infrared code: ");
         Serial.println(ir_results, HEX);
 #endif
-        if (ir_results == 0XFF22DD) {
-            digitalWrite(PIN_LED, HIGH);
+        if (ir_results == 0XFF629D) {
+            mode_flag_ = MODE_REMOTE;
         }
-        else if (ir_results == 0XFFA25D) {
-            digitalWrite(PIN_LED, LOW);
+        else if (ir_results == 0XFFE21D) {
+            mode_flag_ = MODE_AUTO;
         }
-        else if (ir_results == 0xFF02FD) {
-            moveRobotBody(DIR_FORWARD);
+
+        if (mode_flag_ == MODE_REMOTE) {
+            if (ir_results == 0xFF02FD) {
+                moveRobotBody(DIR_FRONT, 1);
+            }
+            else if (ir_results == 0xFF9867) {
+                moveRobotBody(DIR_BACK, 1);
+            }
+            else if (ir_results == 0xFFE01F) {
+                moveRobotBody(DIR_LEFT, 1);
+            }
+            else if (ir_results == 0xFF906f) {
+                moveRobotBody(DIR_RIGHT, 1);
+            }
+            else if (ir_results == 0xFFA857) {
+                moveRobotBody(DIR_STOP, 1);
+            }
+
         }
-        else if (ir_results == 0xFF9867) {
-            moveRobotBody(DIR_BACK);
-        }
-        else if (ir_results == 0xFFE01F) {
-            moveRobotBody(DIR_LEFT);
-        }
-        else if (ir_results == 0xFF906f) {
-            moveRobotBody(DIR_RIGHT);
-        }
-        else if (ir_results == 0xFFA857) {
-            moveRobotBody(DIR_STOP);
+        else if (mode_flag_ == MODE_AUTO) {
+            while (ir_results_ = getUltrasonicDistance)
+            moveRobotBody(DIR_FRONT, 1);
         }
     }
 }
 
-void HexapodBionicRobot::moveRobotBody(uint8_t direction)
+void HexapodBionicRobot::moveRobotBody(uint8_t direction, uint8_t times)
 {
+    char string_direction[5];
+    char string_times[5];
 
+    itoa(direction, string_direction, RADIX);
+    itoa(times, string_times, RADIX);
+
+    Serial.print("#");
+    Serial.print(string_direction);
+    Serial.print("G");
+    Serial.print(string_times);
+    Serial.println("C");
 }
 
 uint32_t HexapodBionicRobot::getInfraredInformation(void)

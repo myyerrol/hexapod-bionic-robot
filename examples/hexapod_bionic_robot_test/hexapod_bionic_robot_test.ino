@@ -2,14 +2,15 @@
 #include <SoftwareSerial.h>
 #include <hexapod_bionic_robot.h>
 
-#define DEBUG 1
+#define DEBUG 0
 
 IRrecv         g_ir_receiver(PIN_IR);
 decode_results g_ir_results;
 
 void setup()
 {
-    Serial.begin(9600);
+    Serial.begin(115200);
+    Serial.println("#1G1C");
     g_ir_receiver.enableIRIn();
 }
 
