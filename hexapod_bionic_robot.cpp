@@ -1,6 +1,8 @@
 #include <SoftwareSerial.h>
 #include "hexapod_bionic_robot.h"
 
+#define DEBUG 1
+
 HexapodBionicRobot::HexapodBionicRobot(IRrecv *ir_recviver,
                                        decode_results *ir_results)
     : ir_receiver_(ir_recviver),
@@ -14,6 +16,22 @@ HexapodBionicRobot::HexapodBionicRobot(IRrecv *ir_recviver,
 
     duration_ = 0.0;
     distance_ = 0.0;
+}
+
+void HexapodBionicRobot::avoidFrontObstacle(void)
+{
+    float distance = getUltrasonicDistance();
+    Serial.println(distance);
+
+    if (distance == false) {
+        return ;
+    }
+    else if (distance <= 2.5) {
+        moveRobotBody(DIR_STOP, 2);
+    }
+    else if (distance <= 5.0) {
+        moveRobotBody(DIR_BACK, 2);
+    }
 }
 
 void HexapodBionicRobot::handleUltrasonicDistance(void)
@@ -64,27 +82,33 @@ void HexapodBionicRobot::handleInfraredInformation(void)
             digitalWrite(PIN_LED, LOW);
             if (ir_results == 0xFF02FD) {
                 moveRobotBody(DIR_FRONT, 1);
+                delay(RUNTIME);
             }
             else if (ir_results == 0xFF9867) {
                 moveRobotBody(DIR_BACK, 1);
+                delay(RUNTIME);
             }
             else if (ir_results == 0xFFE01F) {
                 moveRobotBody(DIR_LEFT, 1);
+                delay(RUNTIME);
             }
             else if (ir_results == 0xFF906f) {
                 moveRobotBody(DIR_RIGHT, 1);
+                delay(RUNTIME);
             }
             else if (ir_results == 0xFFA857) {
                 moveRobotBody(DIR_STOP, 1);
+                delay(RUNTIME);
             }
-
+            avoidFrontObstacle();
         }
         else if (mode_flag_ == MODE_AUTO) {
             digitalWrite(PIN_LED, HIGH);
             while (ir_results != 0XFF629D) {
                 ir_results = getInfraredInformation();
                 moveRobotBody(DIR_FRONT, 1);
-                delay(2000);
+                delay(RUNTIME);
+                avoidFrontObstacle();
             }
             mode_flag_ = MODE_REMOTE;
         }
