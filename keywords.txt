@@ -1,6 +1,7 @@
 HexapodBionicRobot	KEYWORD1
 
-handleInfraredInformation	KEYWORD2
+avoidFrontObstacle	KEYWORD2
+handleInfraredInformation	EYWORD2
 handleUltrasonicDistance	KEYWORD2
 moveRobotBody	KEYWORD2
 getInfraredInformation	KEYWORD2
