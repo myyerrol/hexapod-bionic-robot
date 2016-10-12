@@ -81,23 +81,23 @@ void HexapodBionicRobot::handleInfraredInformation(void)
         if (mode_flag_ == MODE_REMOTE) {
             digitalWrite(PIN_LED, LOW);
             if (ir_results == 0xFF02FD) {
-                moveRobotBody(DIR_FRONT, 1);
+                moveRobotBody(DIR_FRONT, 2);
                 delay(RUNTIME);
             }
             else if (ir_results == 0xFF9867) {
-                moveRobotBody(DIR_BACK, 1);
+                moveRobotBody(DIR_BACK, 2);
                 delay(RUNTIME);
             }
             else if (ir_results == 0xFFE01F) {
-                moveRobotBody(DIR_LEFT, 1);
+                moveRobotBody(DIR_LEFT, 2);
                 delay(RUNTIME);
             }
             else if (ir_results == 0xFF906f) {
-                moveRobotBody(DIR_RIGHT, 1);
+                moveRobotBody(DIR_RIGHT, 2);
                 delay(RUNTIME);
             }
             else if (ir_results == 0xFFA857) {
-                moveRobotBody(DIR_STOP, 1);
+                moveRobotBody(DIR_STOP, 2);
                 delay(RUNTIME);
             }
             avoidFrontObstacle();
@@ -106,7 +106,7 @@ void HexapodBionicRobot::handleInfraredInformation(void)
             digitalWrite(PIN_LED, HIGH);
             while (ir_results != 0XFF629D) {
                 ir_results = getInfraredInformation();
-                moveRobotBody(DIR_FRONT, 1);
+                moveRobotBody(DIR_FRONT, 2);
                 delay(RUNTIME);
                 avoidFrontObstacle();
             }

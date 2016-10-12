@@ -8,7 +8,7 @@ decode_results g_ir_results;
 void setup()
 {
     Serial.begin(115200);
-    Serial.println("#1G1C");
+    Serial.println("#1G2C");
     g_ir_receiver.enableIRIn();
 }
 
