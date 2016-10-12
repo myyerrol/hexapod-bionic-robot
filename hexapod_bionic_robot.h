@@ -19,12 +19,14 @@
 #define MODE_REMOTE 25
 #define MODE_AUTO   26
 #define RADIX       10
-#define TIMEOUT   30000
+#define RUNTIME     2400
+#define TIMEOUT     30000
 
 class HexapodBionicRobot
 {
 public:
     HexapodBionicRobot(IRrecv *ir_receiver, decode_results *ir_results);
+    void avoidFrontObstacle(void);
     void handleInfraredInformation(void);
     void handleUltrasonicDistance(void);
     void moveRobotBody(uint8_t direction, uint8_t times);
