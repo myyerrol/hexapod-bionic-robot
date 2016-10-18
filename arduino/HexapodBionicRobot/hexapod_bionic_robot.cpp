@@ -1,4 +1,3 @@
-#include <SoftwareSerial.h>
 #include "hexapod_bionic_robot.h"
 
 #define DEBUG 1
