@@ -31,6 +31,8 @@ The following video show the basic function of the [hexapod_bionic_robot](https:
   $> cp -r arduino/HexapodBionicRobot/ ~/Arduino/libraries/
   ```
 
-4. Start **Arduino IDE**, select `File/Examples/HexapodBionicRobot/hexapod_bionic_robot_test` and upload to arduino.
+4. Start **Arduino IDE**, select `File/Examples/HexapodBionicRobot/hexapod_bionic_robot_test`.
+
+5. Compile code and upload to arduino.
 
 ## Summary
