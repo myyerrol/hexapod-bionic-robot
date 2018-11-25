@@ -36,3 +36,5 @@ The following video show the basic function of the [hexapod_bionic_robot](https:
 5. Compile code and upload to arduino.
 
 ## Summary
+
+In fact, when I saw the hexapod robot stand up on its own strength for the first time, my heart was very excited. Although the robot's feet will squeak slightly when it supports the ground because of the small moment of the steering gear, hexapod robots can make many complex actions that can not be done by robots thanks to eighteen degrees of freedom of joints. I think this may be the charm of multi-legged robots!
