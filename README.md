@@ -12,7 +12,7 @@ This code repository contains the Arduino embedded codes for hexapod bionic robo
 
 ## Video
 
-The following video show the basic function of the [hexapod_bionic_robot](https://v.youku.com/v_show/id_XMzY1MTU4OTczNg==.html?spm=a2hzp.8244740.0.0).
+The following video show the basic function of the [hexapod_bionic_robot](https://www.bilibili.com/video/BV1oJ411Q7Us/).
 
 ## Configure
 
