@@ -1,4 +1,4 @@
-# hexapod_bionic_robot
+# hexapod-bionic-robot
 
 ![hexapod_bionic_robot](.images/hexapod_bionic_robot_1.jpg)
 
@@ -12,7 +12,7 @@ This code repository contains the Arduino embedded codes for hexapod bionic robo
 
 ## Video
 
-The following video show the basic function of the [hexapod_bionic_robot](https://www.bilibili.com/video/BV1oJ411Q7Us/).
+The following video show the basic function of the [hexapod-bionic-robot](https://www.bilibili.com/video/BV1oJ411Q7Us/).
 
 ## Configure
 
@@ -21,13 +21,13 @@ The following video show the basic function of the [hexapod_bionic_robot](https:
 
   ```sh
   $> cd Desktop
-  $> git clone https://github.com/myyerrol/hexapod_bionic_robot.git
+  $> git clone https://github.com/myyerrol/hexapod-bionic-robot.git
   ```
 
 3. Copy `arduino/HexapodBionicRobot/` directory to `Arduino/libraries/`:
 
   ```sh
-  $> cd ~/Desktop/hexapod_bionic_robot
+  $> cd ~/Desktop/hexapod-bionic-robot
   $> cp -r arduino/HexapodBionicRobot/ ~/Arduino/libraries/
   ```
 
